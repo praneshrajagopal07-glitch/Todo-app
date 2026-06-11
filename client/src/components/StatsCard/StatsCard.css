@@ -1,0 +1,4 @@
+.stats-card{display:flex;align-items:center;gap:16px;background:var(--surface);border-radius:var(--radius);padding:20px 24px;box-shadow:var(--shadow);flex:1;min-width:160px}
+.stats-icon{font-size:2rem}
+.stats-count{font-size:1.8rem;font-weight:700;line-height:1}
+.stats-label{color:var(--text-muted);font-size:.85rem;margin-top:2px}

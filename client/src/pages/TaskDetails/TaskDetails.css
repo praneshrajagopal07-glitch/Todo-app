@@ -1,0 +1,15 @@
+.task-details-page{max-width:700px;margin:0 auto}
+.btn-back{background:transparent;border:none;color:var(--primary);font-weight:600;font-size:.95rem;margin-bottom:20px;padding:0}
+.task-detail-img{width:100%;max-height:300px;object-fit:cover;border-radius:var(--radius);margin-bottom:20px}
+.task-detail-card{background:var(--surface);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.detail-badges{display:flex;gap:10px;margin-bottom:14px}
+.badge{padding:4px 14px;border-radius:20px;font-size:.8rem;font-weight:600}
+.detail-title{font-size:1.6rem;font-weight:700;margin-bottom:12px}
+.detail-desc{color:var(--text-muted);line-height:1.7;margin-bottom:20px}
+.detail-meta{display:flex;flex-direction:column;gap:12px;margin-bottom:24px;padding:16px;background:var(--bg);border-radius:8px}
+.meta-item{display:flex;justify-content:space-between;font-size:.9rem}
+.meta-item span{color:var(--text-muted)}
+.detail-actions{display:flex;gap:12px;flex-wrap:wrap}
+.detail-actions .btn-complete{padding:10px 20px;background:#00b89422;color:#00b894;border:1.5px solid #00b894;border-radius:8px;font-weight:600}
+.detail-actions .btn-edit{padding:10px 20px;background:var(--primary);color:#fff;border-radius:8px;font-weight:600}
+.detail-actions .btn-delete{padding:10px 20px;background:#e1705522;color:#e17055;border:1.5px solid #e17055;border-radius:8px;font-weight:600}
