@@ -1,105 +1,197 @@
-# ✅ Todo Task Management System
+# Todo Management App
 
-A full-stack MERN application with Firebase Auth, Cloudinary uploads, JWT, dark mode, and task expiration.
+A full-stack Todo Management application built with React, Vite, Node.js, Express, MongoDB, Firebase Authentication, Cloudinary, and Nodemailer.
 
-## 🚀 Tech Stack
-- **Frontend**: React 18, Vite, React Router v6, React Hook Form, React Hot Toast
-- **Backend**: Node.js, Express.js, MongoDB (Mongoose)
-- **Auth**: Firebase (Google OAuth) + JWT
-- **Storage**: Cloudinary (images)
-- **Scheduler**: node-cron (auto-expire tasks, notifications)
+## Features
 
----
+* User Registration and Login
+* Google Sign-In with Firebase Authentication
+* JWT Authentication
+* Create, Update, Delete Tasks
+* Task Status Management
+* Due Date Tracking
+* Image Uploads with Cloudinary
+* Email Reminder Notifications
+* Responsive User Interface
+* MongoDB Database Storage
 
-## 📁 Project Structure
+## Tech Stack
+
+### Frontend
+
+* React
+* Vite
+* Firebase Authentication
+* Axios
+* React Router
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JWT
+* Firebase Admin SDK
+* Cloudinary
+* Nodemailer
+
+## Project Structure
+
+```text
+todo-management/
+├── client/
+│   ├── src/
+│   ├── public/
+│   └── .env
+│
+├── server/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   └── .env
+│
+└── README.md
 ```
-TODO-MANAGEMENT/
-├── client/    # React frontend (Vite)
-└── server/    # Node/Express backend
+
+## Environment Variables
+
+### Server (.env)
+
+```env
+PORT=5000
+
+MONGODB_URI=your_mongodb_connection_string
+
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRE=7d
+
+FIREBASE_PROJECT_ID=your_project_id
+FIREBASE_PRIVATE_KEY=your_private_key
+FIREBASE_CLIENT_EMAIL=your_client_email
+
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
+EMAIL_FROM=noreply@todoapp.com
+
+CLIENT_URL=http://localhost:5173
 ```
 
----
+### Client (.env)
 
-## ⚙️ Setup Instructions
+```env
+VITE_API_URL=http://localhost:5000/api
 
-### 1. Clone & Install
+VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+```
+
+## Installation
+
+### Clone Repository
 
 ```bash
-# Server
+git clone https://github.com/yourusername/todo-management.git
+cd todo-management
+```
+
+### Install Backend Dependencies
+
+```bash
 cd server
 npm install
+```
 
-# Client
+### Install Frontend Dependencies
+
+```bash
 cd ../client
 npm install
 ```
 
-### 2. Environment Variables
+## Running the Application
 
-**server/.env** — fill in:
-- `MONGODB_URI` — MongoDB connection string
-- `JWT_SECRET` — any strong secret
-- `FIREBASE_PROJECT_ID`, `FIREBASE_PRIVATE_KEY`, `FIREBASE_CLIENT_EMAIL` — from Firebase Admin SDK JSON
-- `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` — from Cloudinary dashboard
-- `EMAIL_USER`, `EMAIL_PASS` — Gmail App Password for notifications
-
-**client/.env** — fill in:
-- `VITE_FIREBASE_*` — from Firebase Web App config
-
-### 3. Run
+### Start Backend
 
 ```bash
-# Terminal 1 – backend
-cd server && npm run dev
-
-# Terminal 2 – frontend
-cd client && npm run dev
+cd server
+npm run dev
 ```
 
-Visit: http://localhost:5173
+Backend runs on:
 
----
+```text
+http://localhost:5000
+```
 
-## 🌟 Features
-- ✅ Register / Login with email or Google (Firebase)
-- ✅ Create, Edit, Delete, View tasks
-- ✅ Upload task images & profile photos (Cloudinary)
-- ✅ Task priority: High / Medium / Low
-- ✅ Task status: Pending → Completed / Expired
-- ✅ Auto-expire tasks via cron job (midnight)
-- ✅ Email & in-app notifications (due tomorrow)
-- ✅ Search & filter tasks
-- ✅ Dark / Light theme toggle
-- ✅ Fully protected routes (JWT)
-- ✅ Input validation (client + server)
+### Start Frontend
 
----
+```bash
+cd client
+npm run dev
+```
 
-## 🗄 API Endpoints
+Frontend runs on:
 
-| Method | Route | Description |
-|--------|-------|-------------|
-| POST | /api/auth/register | Register |
-| POST | /api/auth/login | Login |
-| POST | /api/auth/firebase | Google login |
-| GET | /api/auth/me | Current user |
-| GET | /api/tasks | Get all tasks |
-| POST | /api/tasks | Create task |
-| GET | /api/tasks/stats | Task statistics |
-| GET | /api/tasks/:id | Get task |
-| PUT | /api/tasks/:id | Update task |
-| DELETE | /api/tasks/:id | Delete task |
-| PATCH | /api/tasks/:id/complete | Mark complete |
-| GET | /api/profile | Get profile |
-| PUT | /api/profile | Update profile |
-| PUT | /api/profile/password | Change password |
-| PUT | /api/profile/image | Upload avatar |
-| GET | /api/notifications | Get notifications |
-| PATCH | /api/notifications/read-all | Mark all read |
+```text
+http://localhost:5173
+```
 
----
+## Firebase Setup
 
-## 🔐 Admin Seed
-Run `node server/migrations/004-seed-admin.js` to create:
-- Email: `admin@todoapp.com`
-- Password: `Admin@123`
+1. Create a Firebase project.
+2. Enable Authentication.
+3. Enable Google Sign-In.
+4. Add a Web App.
+5. Copy Firebase configuration into `client/.env`.
+6. Generate a Service Account key and configure backend Firebase variables.
+
+## Cloudinary Setup
+
+1. Create a Cloudinary account.
+2. Copy Cloud Name, API Key, and API Secret.
+3. Add them to `server/.env`.
+
+## Email Setup
+
+1. Enable Google 2-Step Verification.
+2. Generate a Gmail App Password.
+3. Configure email credentials in `server/.env`.
+
+## Build for Production
+
+### Frontend
+
+```bash
+cd client
+npm run build
+```
+
+### Backend
+
+```bash
+cd server
+npm start
+```
+
+## Security Notes
+
+* Never commit `.env` files.
+* Keep API keys and secrets private.
+* Use strong JWT secrets.
+* Rotate exposed credentials immediately.
+
+## License
+
+This project is licensed under the MIT License.

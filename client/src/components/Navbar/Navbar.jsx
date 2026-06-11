@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import './Navbar.css';
 
 const Navbar = ({ notifCount = 0 }) => {
@@ -13,7 +12,6 @@ const Navbar = ({ notifCount = 0 }) => {
     <nav className="navbar">
       <Link to="/dashboard" className="navbar-brand">✅ TodoApp</Link>
       <div className="navbar-right">
-        <ThemeToggle />
         {notifCount > 0 && <span className="notif-badge">{notifCount}</span>}
         <Link to="/profile" className="navbar-avatar">
           {user?.profileImage

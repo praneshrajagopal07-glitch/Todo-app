@@ -7,7 +7,7 @@ const initFirebase = require('../config/firebase');
 const register = async (req, res) => {
   const { name, email, password } = req.body;
   const exists = await User.findOne({ email });
-  if (exists) return res.status(400).json({ message: 'User already exists' });
+  if (exists) return res.status(400).json({ message: 'That Email account already registered' });
 
   const user = await User.create({ name, email, password });
   res.status(201).json({
@@ -22,8 +22,11 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  if (!user || !(await user.matchPassword(password))) {
-    return res.status(401).json({ message: 'Invalid email or password' });
+  if (!user) {
+    return res.status(400).json({ message: 'You entered invalid Email' });
+  }
+  if (!(await user.matchPassword(password))) {
+    return res.status(400).json({ message: 'You entered password is wrong' });
   }
   res.json({
     _id: user._id, name: user.name, email: user.email,

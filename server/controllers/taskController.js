@@ -45,22 +45,41 @@ const getTaskDueDateTime = (task) => {
 };
 
 const isTaskOverdue = (task, now = new Date()) => {
-  if (!task || task.status !== 'Pending') return false;
+  if (!task) return false;
   const dueAt = getTaskDueDateTime(task);
   if (!dueAt) return false;
   return dueAt.getTime() <= now.getTime();
 };
 
 const syncOverdueTasks = async (filter = {}) => {
-  const tasks = await Task.find({ ...filter, status: 'Pending' });
-  const overdueIds = tasks.filter((task) => isTaskOverdue(task)).map((task) => task._id);
+  const tasks = await Task.find({ ...filter, status: { $in: ['Pending', 'Expired'] } });
+  const overdueIds = [];
+  const reopenIds = [];
 
-  if (!overdueIds.length) return { modifiedCount: 0 };
+  for (const task of tasks) {
+    if (isTaskOverdue(task)) overdueIds.push(task._id);
+    else reopenIds.push(task._id);
+  }
 
-  return Task.updateMany(
-    { _id: { $in: overdueIds } },
-    { $set: { status: 'Expired' } }
-  );
+  let modifiedCount = 0;
+
+  if (overdueIds.length) {
+    const result = await Task.updateMany(
+      { _id: { $in: overdueIds } },
+      { $set: { status: 'Expired' } }
+    );
+    modifiedCount += result.modifiedCount || 0;
+  }
+
+  if (reopenIds.length) {
+    const result = await Task.updateMany(
+      { _id: { $in: reopenIds } },
+      { $set: { status: 'Pending' } }
+    );
+    modifiedCount += result.modifiedCount || 0;
+  }
+
+  return { modifiedCount };
 };
 
 // @desc  Get all tasks for user
@@ -120,7 +139,9 @@ const updateTask = async (req, res) => {
   task.status = status || task.status;
   if (req.body.removeTaskImage === 'true') task.taskImage = '';
   if (req.file) task.taskImage = getUploadedFileUrl(req, req.file, 'tasks');
-  if (isTaskOverdue(task) && task.status !== 'Completed') task.status = 'Expired';
+  if (task.status !== 'Completed') {
+    task.status = isTaskOverdue(task) ? 'Expired' : 'Pending';
+  }
 
   const updated = await task.save();
   await ActivityLog.create({ userId: req.user._id, taskId: task._id, action: 'updated', details: `Updated task: ${task.title}` });

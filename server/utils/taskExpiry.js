@@ -48,26 +48,41 @@ const getTaskDueDateTime = (task) => {
 };
 
 const isTaskOverdue = (task, now = new Date()) => {
-  if (!task || task.status !== 'Pending') return false;
+  if (!task) return false;
   const dueAt = getTaskDueDateTime(task);
   if (!dueAt) return false;
   return dueAt.getTime() <= now.getTime();
 };
 
 const expireOverdueTasks = async (filter = {}) => {
-  const tasks = await Task.find({ ...filter, status: 'Pending' });
-  const overdueIds = tasks.filter((task) => isTaskOverdue(task)).map((task) => task._id);
+  const tasks = await Task.find({ ...filter, status: { $in: ['Pending', 'Expired'] } });
+  const overdueIds = [];
+  const reopenIds = [];
 
-  if (!overdueIds.length) {
-    return { matchedCount: tasks.length, modifiedCount: 0 };
+  for (const task of tasks) {
+    if (isTaskOverdue(task)) overdueIds.push(task._id);
+    else reopenIds.push(task._id);
   }
 
-  const result = await Task.updateMany(
-    { _id: { $in: overdueIds } },
-    { $set: { status: 'Expired' } }
-  );
+  let modifiedCount = 0;
 
-  return result;
+  if (overdueIds.length) {
+    const result = await Task.updateMany(
+      { _id: { $in: overdueIds } },
+      { $set: { status: 'Expired' } }
+    );
+    modifiedCount += result.modifiedCount || 0;
+  }
+
+  if (reopenIds.length) {
+    const result = await Task.updateMany(
+      { _id: { $in: reopenIds } },
+      { $set: { status: 'Pending' } }
+    );
+    modifiedCount += result.modifiedCount || 0;
+  }
+
+  return { modifiedCount };
 };
 
 module.exports = {

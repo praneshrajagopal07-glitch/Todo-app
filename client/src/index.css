@@ -15,15 +15,6 @@
   --radius: 10px;
 }
 
-[data-theme='dark'] {
-  --bg: #1a1a2e;
-  --surface: #16213e;
-  --text: #eaeaea;
-  --text-muted: #a0a0b0;
-  --border: #2d2d44;
-  --shadow: 0 2px 12px rgba(0,0,0,0.3);
-}
-
 body {
   font-family: 'Segoe UI', system-ui, sans-serif;
   background: var(--bg);
