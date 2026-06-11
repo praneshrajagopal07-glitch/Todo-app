@@ -1,29 +1,22 @@
-# Todo Management App
+# ✅ Todo Task Management System
 
-A full-stack Todo Management application built with React, Vite, Node.js, Express, MongoDB, Firebase Authentication, Cloudinary, and Nodemailer.
+🎥 **Demo Video:**
+https://www.loom.com/share/748309a4ac1b471b8cc9cbd437832d34
 
-## Features
+A full-stack MERN application built with the MERN stack, Firebase Authentication, Cloudinary image uploads, JWT authorization, task expiration scheduling, email notifications, and a responsive dark/light mode UI.
 
-* User Registration and Login
-* Google Sign-In with Firebase Authentication
-* JWT Authentication
-* Create, Update, Delete Tasks
-* Task Status Management
-* Due Date Tracking
-* Image Uploads with Cloudinary
-* Email Reminder Notifications
-* Responsive User Interface
-* MongoDB Database Storage
+---
 
-## Tech Stack
+## 🚀 Tech Stack
 
 ### Frontend
 
-* React
+* React 18
 * Vite
-* Firebase Authentication
-* Axios
-* React Router
+* React Router v6
+* React Hook Form
+* React Hot Toast
+* Tailwind CSS
 
 ### Backend
 
@@ -31,108 +24,184 @@ A full-stack Todo Management application built with React, Vite, Node.js, Expres
 * Express.js
 * MongoDB
 * Mongoose
-* JWT
-* Firebase Admin SDK
-* Cloudinary
-* Nodemailer
 
-## Project Structure
+### Authentication
+
+* Firebase Authentication
+* Google OAuth
+* JWT (JSON Web Tokens)
+
+### Storage & Services
+
+* Cloudinary (Image Uploads)
+* Nodemailer (Email Notifications)
+* Node Cron (Task Scheduling)
+
+---
+
+## 📹 Project Demo
+
+Watch the complete application walkthrough:
+
+🔗 https://www.loom.com/share/748309a4ac1b471b8cc9cbd437832d34
+
+The demo covers:
+
+* User Registration & Login
+* Google Authentication
+* Task Creation & Management
+* Profile Management
+* Image Uploads
+* Notifications
+* Task Filtering & Search
+* Dark/Light Theme
+* Auto Expiring Tasks
+
+---
+
+## 📁 Project Structure
 
 ```text
-todo-management/
-├── client/
+TODO-MANAGEMENT/
+├── client/                 # React Frontend
 │   ├── src/
 │   ├── public/
-│   └── .env
+│   └── package.json
 │
-├── server/
+├── server/                 # Express Backend
 │   ├── controllers/
 │   ├── models/
 │   ├── routes/
 │   ├── middleware/
-│   └── .env
+│   ├── services/
+│   ├── migrations/
+│   └── package.json
 │
 └── README.md
 ```
 
-## Environment Variables
+---
 
-### Server (.env)
+## ✨ Features
 
-```env
-PORT=5000
+### Authentication
 
-MONGODB_URI=your_mongodb_connection_string
+* ✅ Email & Password Registration
+* ✅ Login with Firebase Authentication
+* ✅ Google OAuth Login
+* ✅ JWT-Based Route Protection
+* ✅ Secure Authentication Flow
 
-JWT_SECRET=your_jwt_secret
-JWT_EXPIRE=7d
+### Task Management
 
-FIREBASE_PROJECT_ID=your_project_id
-FIREBASE_PRIVATE_KEY=your_private_key
-FIREBASE_CLIENT_EMAIL=your_client_email
+* ✅ Create Tasks
+* ✅ Edit Tasks
+* ✅ Delete Tasks
+* ✅ View Task Details
+* ✅ Task Priorities (High, Medium, Low)
+* ✅ Task Status Tracking
+* ✅ Mark Tasks as Completed
 
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
+### Automation
 
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASS=your_app_password
-EMAIL_FROM=noreply@todoapp.com
+* ✅ Auto Expire Tasks Using Cron Jobs
+* ✅ Due Date Monitoring
+* ✅ Automatic Status Updates
 
-CLIENT_URL=http://localhost:5173
-```
+### Notifications
 
-### Client (.env)
+* ✅ In-App Notifications
+* ✅ Email Notifications
+* ✅ Due Tomorrow Reminders
+* ✅ Mark Notifications as Read
 
-```env
-VITE_API_URL=http://localhost:5000/api
+### User Profile
 
-VITE_FIREBASE_API_KEY=your_api_key
-VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-VITE_FIREBASE_APP_ID=your_app_id
-```
+* ✅ Update Profile Information
+* ✅ Change Password
+* ✅ Upload Profile Avatar
+* ✅ Cloudinary Image Storage
 
-## Installation
+### UI/UX
 
-### Clone Repository
+* ✅ Responsive Design
+* ✅ Dark Mode / Light Mode
+* ✅ Toast Notifications
+* ✅ Form Validation
+* ✅ Search & Filter Tasks
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/todo-management.git
-cd todo-management
+git clone <repository-url>
+cd TODO-MANAGEMENT
 ```
 
-### Install Backend Dependencies
+### 2. Install Dependencies
+
+#### Backend
 
 ```bash
 cd server
 npm install
 ```
 
-### Install Frontend Dependencies
+#### Frontend
 
 ```bash
 cd ../client
 npm install
 ```
 
-## Running the Application
+---
+
+## 🔑 Environment Variables
+
+### Server Environment (`server/.env`)
+
+```env
+PORT=5000
+
+MONGODB_URI=
+
+JWT_SECRET=
+
+FIREBASE_PROJECT_ID=
+FIREBASE_PRIVATE_KEY=
+FIREBASE_CLIENT_EMAIL=
+
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+
+EMAIL_USER=
+EMAIL_PASS=
+```
+
+### Client Environment (`client/.env`)
+
+```env
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
+```
+
+---
+
+## ▶️ Running the Application
 
 ### Start Backend
 
 ```bash
 cd server
 npm run dev
-```
-
-Backend runs on:
-
-```text
-http://localhost:5000
 ```
 
 ### Start Frontend
@@ -142,56 +211,112 @@ cd client
 npm run dev
 ```
 
-Frontend runs on:
+Application URL:
 
 ```text
 http://localhost:5173
 ```
 
-## Firebase Setup
+---
 
-1. Create a Firebase project.
-2. Enable Authentication.
-3. Enable Google Sign-In.
-4. Add a Web App.
-5. Copy Firebase configuration into `client/.env`.
-6. Generate a Service Account key and configure backend Firebase variables.
+## 🗄 API Endpoints
 
-## Cloudinary Setup
+### Authentication
 
-1. Create a Cloudinary account.
-2. Copy Cloud Name, API Key, and API Secret.
-3. Add them to `server/.env`.
+| Method | Endpoint           | Description   |
+| ------ | ------------------ | ------------- |
+| POST   | /api/auth/register | Register User |
+| POST   | /api/auth/login    | Login User    |
+| POST   | /api/auth/firebase | Google Login  |
+| GET    | /api/auth/me       | Current User  |
 
-## Email Setup
+### Tasks
 
-1. Enable Google 2-Step Verification.
-2. Generate a Gmail App Password.
-3. Configure email credentials in `server/.env`.
+| Method | Endpoint                | Description     |
+| ------ | ----------------------- | --------------- |
+| GET    | /api/tasks              | Get All Tasks   |
+| POST   | /api/tasks              | Create Task     |
+| GET    | /api/tasks/stats        | Task Statistics |
+| GET    | /api/tasks/:id          | Get Task By ID  |
+| PUT    | /api/tasks/:id          | Update Task     |
+| DELETE | /api/tasks/:id          | Delete Task     |
+| PATCH  | /api/tasks/:id/complete | Mark Complete   |
 
-## Build for Production
+### Profile
 
-### Frontend
+| Method | Endpoint              | Description     |
+| ------ | --------------------- | --------------- |
+| GET    | /api/profile          | Get Profile     |
+| PUT    | /api/profile          | Update Profile  |
+| PUT    | /api/profile/password | Change Password |
+| PUT    | /api/profile/image    | Upload Avatar   |
+
+### Notifications
+
+| Method | Endpoint                    | Description       |
+| ------ | --------------------------- | ----------------- |
+| GET    | /api/notifications          | Get Notifications |
+| PATCH  | /api/notifications/read-all | Mark All Read     |
+
+---
+
+## 🔐 Admin Seed
+
+Run the following command to create an admin account:
 
 ```bash
-cd client
-npm run build
+node server/migrations/004-seed-admin.js
 ```
 
-### Backend
+### Admin Credentials
 
-```bash
-cd server
-npm start
+```text
+Email: admin@todoapp.com
+Password: Admin@123
 ```
 
-## Security Notes
+---
 
-* Never commit `.env` files.
-* Keep API keys and secrets private.
-* Use strong JWT secrets.
-* Rotate exposed credentials immediately.
+## 📸 Key Functionalities
 
-## License
+* Firebase Authentication Integration
+* Google OAuth Sign-In
+* JWT Authorization
+* MongoDB Database Management
+* Cloudinary Image Uploads
+* Email Reminder System
+* Cron-Based Task Expiration
+* Task Search & Filtering
+* Responsive Dashboard
+* Dark/Light Theme Support
 
-This project is licensed under the MIT License.
+---
+
+## 🛡 Security Features
+
+* Password Hashing
+* JWT Authentication
+* Protected Routes
+* Input Validation
+* Secure Environment Variables
+* Firebase Token Verification
+
+---
+
+## 📈 Future Enhancements
+
+* Team Collaboration
+* Task Comments
+* Real-Time Notifications
+* File Attachments
+* Calendar Integration
+* Analytics Dashboard
+* Mobile Application
+
+---
+
+## 👨‍💻 Author
+
+Developed as a full-stack MERN project demonstrating authentication, task management, cloud storage integration, and automated scheduling.
+
+⭐ If you found this project useful, consider giving it a star.
